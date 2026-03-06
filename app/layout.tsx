@@ -57,6 +57,9 @@ export async function generateMetadata(): Promise<Metadata> {
       alternates: {
         canonical: currentURL,
       },
+      verification: {
+        google: "hhD1s4YTU9n1GvcsYaYfDOnOm3opbC3wRrjtyABD-WQ",
+      },
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
