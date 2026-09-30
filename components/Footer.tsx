@@ -20,36 +20,11 @@ export default function Footer({
 }: FooterData & { description?: string }) {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    {
-      icon: FaInstagram,
-      href: "https://www.instagram.com/qahwajeyn",
-      label: "انستقرام",
-    },
-    {
-      icon: FaTiktok,
-      href: "https://www.tiktok.com/@user61719922769991",
-      label: "تيك توك",
-    },
-    {
-      icon: FaFacebookF,
-      href: "https://www.facebook.com/SbabinAlkahwaa/?_rdr",
-      label: "فيسبوك",
-    },
-    { icon: FaTwitter, href: "https://x.com/NghmAbw11703", label: "تويتر" },
-    {
-      icon: FaYoutube,
-      href: "https://www.youtube.com/channel/UCProSRhVIgB-Bkn6_NPrMng",
-      label: "يوتيوب",
-    },
-  ];
-
   const footerLinks = [
     { name: "الرئيسية", href: "/#home" },
     { name: "عن الشركة", href: "/#about" },
     { name: "خدماتنا", href: "/#services" },
     { name: "باقاتنا", href: "/#packages" },
-    { name: "اتصل بنا", href: "/#contact" },
   ];
 
   return (
@@ -94,7 +69,7 @@ export default function Footer({
           </div>
 
           {/* ───── Main Footer Grid ───── */}
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -127,55 +102,6 @@ export default function Footer({
                   </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-white font-bold mb-6">تواصل معنا</h3>
-              <div className="space-y-4 text-sm">
-                {address && (
-                  <div className="flex items-start gap-3 text-[#E5F3DD]/60">
-                    <MapPin className="w-4 h-4 text-[#97CEAD]" />
-                    <span>{address}</span>
-                  </div>
-                )}
-
-                {email && (
-                  <a
-                    href={`mailto:${email}`}
-                    className="flex items-center gap-3 text-[#E5F3DD]/60 hover:text-[#97CEAD] transition">
-                    <Mail className="w-4 h-4 text-[#97CEAD]" />
-                    <span>{email}</span>
-                  </a>
-                )}
-
-                {phone && (
-                  <a
-                    href={`tel:${phone}`}
-                    className="flex items-center gap-3  text-[#E5F3DD]/60 hover:text-[#97CEAD] transition">
-                    <Phone className="w-4 h-4 text-[#97CEAD]" />
-                    <span>{phone}</span>
-                  </a>
-                )}
-              </div>
-
-              {/* Social Icons */}
-              <div className="flex gap-3 mt-6">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#2A6250] flex items-center justify-center text-[#97CEAD] hover:text-white transition">
-                      <Icon size={16} />
-                    </a>
-                  );
-                })}
-              </div>
             </div>
           </div>
 

@@ -12,33 +12,9 @@ export function GallerySection({ gallery }: { gallery: GalleryImageData[] }) {
   return (
     <section
       id="gallery"
-      className="py-24 bg-linear-to-b from-white to-[#F8FBF6]"
+      className="py-10 bg-linear-to-b from-white to-[#F8FBF6]"
       dir="rtl">
       <div className="max-w-7xl mx-auto md:px-6 px-2">
-        {/* ───── Header ───── */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
-            <span className="inline-block text-sm font-bold text-[#2A6250] bg-[#E5F3DD] px-4 py-1 rounded-full border border-[#97CEAD]/40 mb-4">
-              معرض الأعمال
-            </span>
-
-            <h2 className="text-3xl md:text-4xl font-black text-[#012437] mb-3">
-              من ذكريات مناسباتنا
-            </h2>
-
-            <p className="text-[#012437]/60 max-w-lg leading-relaxed">
-              لقطات حية من فعاليات ومناسبات قمنا بخدمتها في الرياض.
-            </p>
-          </div>
-
-          <a
-            href="#"
-            className="hidden md:flex items-center gap-2 font-bold text-[#2A6250] hover:text-[#012437] transition group">
-            عرض الكل
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          </a>
-        </div>
-
         {/* ───── Gallery Grid ───── */}
         {gallery.length === 0 ? (
           <div className="flex items-center justify-center min-h-80 rounded-[40px] bg-[#E5F3DD]/40 border border-[#97CEAD]/30">

@@ -1,7 +1,8 @@
-import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
+import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
 
 type Article = {
   id: string;
@@ -20,9 +21,31 @@ type GetArticlesResponse = {
   };
 };
 
+export const metadata: Metadata = {
+  title: "مدونة بن التجار | مقالات تثري معرفتك بالقهوة والضيافة",
+  description:
+    "اكتشف محتوى متجدد عن القهوة العربية، ثقافة الضيافة، تجهيز المجالس والمناسبات، مع نصائح عملية تناسب مختلف الاحتياجات.",
+  alternates: {
+    canonical: `${currentURL}/blog`,
+  },
+  openGraph: {
+    title: "مدونة بن التجار | مقالات تثري معرفتك بالقهوة والضيافة",
+    description:
+      "اكتشف محتوى متجدد عن القهوة العربية، ثقافة الضيافة، تجهيز المجالس والمناسبات، مع نصائح عملية تناسب مختلف الاحتياجات.",
+    url: `${currentURL}/blog`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "مدونة بن التجار | مقالات تثري معرفتك بالقهوة والضيافة",
+    description:
+      "اكتشف محتوى متجدد عن القهوة العربية، ثقافة الضيافة، تجهيز المجالس والمناسبات، مع نصائح عملية تناسب مختلف الاحتياجات.",
+  },
+};
+
 export default async function ArticlesPage() {
   const res = await fetch(
-    `${APP_URL}/api/project/${CurrentProjectId}/articles`,
+    `${APP_URL}/api/project/${CurrentProjectId}/articles/category/خدمات-الضيافة`,
   );
 
   if (!res.ok) {
@@ -34,7 +57,7 @@ export default async function ArticlesPage() {
 
   return (
     <section id="articles" className="py-20 min-h-[60vh] " dir="rtl">
-      <div className="w-full max-w-7xl mx-auto px-6">
+      <div className="w-full container mx-auto px-6">
         {/* Back link */}
         <Link
           href="/"
@@ -64,7 +87,7 @@ export default async function ArticlesPage() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid md:gap-6 gap-3 grid-cols-2 lg:grid-cols-4">
             {articles.map((article, index) => (
               <Link
                 href={`/${article.title.split(" ").join("-")}`}
@@ -72,7 +95,7 @@ export default async function ArticlesPage() {
                 className="group flex flex-col bg-white rounded-[32px] overflow-hidden border border-[#97CEAD]/40 shadow-[0_20px_40px_-10px_rgba(42,98,80,0.08)] hover:shadow-[0_30px_60px_-12px_rgba(1,36,55,0.14)] hover:-translate-y-1 transition-all duration-300">
                 {/* Cover image */}
                 {article.coverImage ? (
-                  <div className="relative w-full aspect-video overflow-hidden">
+                  <div className="relative w-full md:aspect-4/3 aspect-3/2 overflow-hidden">
                     <Image
                       src={article.coverImage}
                       alt={article.title}
@@ -90,27 +113,27 @@ export default async function ArticlesPage() {
                 )}
 
                 {/* Content */}
-                <div className="flex flex-col flex-1 p-8">
-                  <h2 className="font-bold text-xl text-[#012437] mb-3 line-clamp-2">
+                <div className="flex flex-col flex-1 md:p-6 p-2">
+                  <h2 className="font-bold md:text-lg text-base text-[#012437] mb-3 line-clamp-2">
                     {article.title}
                   </h2>
 
                   {article.content && (
-                    <p className="text-sm text-[#012437]/65 leading-relaxed line-clamp-3 flex-1 mb-6">
+                    <p className="md:text-sm text-xs text-[#012437]/65 leading-relaxed line-clamp-3 flex-1 mb-6">
                       {article.content.replace(/<[^>]+>/g, "")}
                     </p>
                   )}
 
                   {/* Footer row */}
-                  <div className="flex items-center justify-between pt-4 border-t border-[#97CEAD]/30 mt-auto">
-                    <span className="text-xs text-[#012437]">
+                  <div className="pt-4 border-t border-[#97CEAD]/30 mt-auto">
+                    <span className="text-xs text-[#012437] block mb-2">
                       {new Date(article.createdAt).toLocaleDateString("ar-SA", {
                         year: "numeric",
                         month: "short",
                         day: "numeric",
                       })}
                     </span>
-                    <span className="text-xs font-bold text-[#2A6250] flex items-center gap-1 group-hover:gap-2 transition-all duration-300">
+                    <span className="w-full text-xs font-bold bg-[#2A6250] text-white text-center py-2 rounded-2xl  flex items-center justify-center gap-1 group-hover:gap-2 transition-all duration-300">
                       اقرأ المقال
                       <ArrowLeft className="w-3 h-3" strokeWidth={2.5} />
                     </span>

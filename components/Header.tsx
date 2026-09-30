@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/blog", label: "خدمات الضيافة" },
   { href: "/#packages", label: "عروضنا وباقاتنا" },
   { href: "/#gallery", label: "معرض الصور" },
-  { href: "/#contact", label: "اتصل بنا" },
 ];
 
 type HeaderProps = HeaderData & {
@@ -32,20 +31,20 @@ export function Header({ brandName, whatsapp }: HeaderProps) {
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#E5F3DD] border-b border-[#97CEAD]/40 shadow-[0_2px_20px_rgba(1,36,55,0.06)] transition-all duration-300">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 xl:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5 max-w-70">
             <div className="w-10 h-10 bg-[#2A6250] rounded-full flex items-center justify-center text-white shadow-[0_4px_15px_rgba(42,98,80,0.3)]">
               <Coffee className="w-5 h-5" />
             </div>
-            <p className="font-black text-lg md:text-2xl tracking-tight text-[#012437] leading-none">
+            <p className="font-black text-lg tracking-tight text-[#012437] leading-none">
               {brandName}
             </p>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8" dir="rtl">
+          <nav className="hidden lg:flex items-center gap-5" dir="rtl">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
